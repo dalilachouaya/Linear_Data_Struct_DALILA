@@ -1,0 +1,56 @@
+
+/////*********************************************************SECOND SOLUTION *******************************/////////////////////
+
+ALGORITHM algo1_Second_solu
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER> ;  // HASH_TABLE<Key_type,Value_type>
+    Set_1 : ARRAY_OF INTEGER[4]; // declaring the array and define its length.
+    Set_2 : ARRAY_OF INTEGER[5]; 
+    count, el, sum , i , key ,iter , set : INTEGER;  
+BEGIN
+    Set_1 : {3, 1, 7, 9}
+    Set _2: {2, 4, 1, 9, 3}
+    count:= 1;
+    sum:= 0;
+FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
+    el := Set_1[i];
+    IF (htab.lookup(el) == TRUE) THEN
+        count := htab.get(el);
+        htab.insert(el, count+1);
+    ELSE 
+        htab.insert(el, 1);
+    END_IF
+END_FOR
+FOR i FROM 0 TO Set_2.length-1 STEP 1  DO
+    el := Set_2[i];
+    IF (htab.lookup(el) == TRUE) THEN
+        count := htab.get(el);
+        htab.insert(el, count+1);
+    ELSE 
+        htab.insert(el, 1);
+    END_IF
+END_FOR
+
+    // Get an iterator
+    iter := set.iterator();
+     // Using keySet() to get the set view of keys
+    set := htab.keySet();
+    // Display elements
+WHILE (iter.hasNext()) DO
+    key := iter.next();
+    IF (htab.get(key) == 1) THEN
+        sum := sum + key;
+    END_IF
+END_WHILE
+
+    Write('Set 1 :');
+    FOR i FROM 0 TO Set_1.length-1 STEP 1 DO 
+        Write(Set_1[i]);
+    END_FOR
+    Write('Set 2 :');
+    FOR i FROM 0 TO Set_2.length-1 STEP 1  DO   
+        Write(Set_2[i]);
+    END_FOR
+    Write('Distinct Elements Sum : ') ;
+    Write(sum);
+END
