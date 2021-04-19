@@ -14,17 +14,21 @@ BEGIN
     Set_1 : {3, 1, 7, 9}
     Set _2: {2, 4, 1, 9, 3}
     sum := 0;
+
 FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
-    FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
-
-        IF (Set_1[i] <> Set_2[j]) THEN
-            dist[k] := Set_1[i] ;
-
-        ELSE_IF (Set_2[j] <> Set_1[i]) THEN
-            dist[k] := Set_2[j]
-        
+        FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
+        el := Set_1[i];
+        IF ((el <> Set_2[j])) THEN
+            Dist[k] := el ;
         END_IF
-    END_FOR
+        END_FOR
+END_FOR
+FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
+        FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
+        el := Set_2[j];
+        IF ( (el <> Set_1[i])) THEN
+            Dist[k] := el ;
+        END_IF
 END_FOR
 
 FOR k FROM 0 TO Dist.length-1 STEP 1 DO
