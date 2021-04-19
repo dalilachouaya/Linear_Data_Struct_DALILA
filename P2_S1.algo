@@ -8,23 +8,20 @@ VAR
     Set_1 : ARRAY_OF INTEGER[4]; // declaring the array and define its length.
     Set_2 : ARRAY_OF INTEGER[4];
     Overlap : ARRAY_OF INTEGER[];
-    sum , i ,j ,k, tempo : INTEGER;
+    sum , i ,j ,k : INTEGER;
 
 BEGIN
     sum := 0;
-    tempo := 0;
     Set_1 := {12, 13, 6, 10};
     Set_2 := {13, 10, 16, 15};
 
 FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
     FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
-        IF (Set_1[i] <> Set_2[j]) THEN
-            Set_2[j] := Set_2.slice(j,1);
-            j :=j-1;
-            tempo := 1;
-        ELSE_IF ((tempo == 0) && (Set_1[i] == Set_2[j]) ) THEN
-                Overlap[k] := Set_1[i];
-                Overlap.push(Set_2[j]);
+        IF (Set_1[i] == Set_2[j]) THEN
+            Overlap[k] := Set_1[i];
+
+        ELSE_IF ((Set_2[j] == Set_1[i]) ) THEN
+                Overlap[k] := Set_2[j];
         END_IF
     END_FOR
 END_FOR
