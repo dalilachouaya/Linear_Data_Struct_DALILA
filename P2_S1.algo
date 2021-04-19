@@ -7,28 +7,33 @@ ALGORITHM algo2_first_solu
 VAR
     Set_1 : ARRAY_OF INTEGER[4]; // declaring the array and define its length.
     Set_2 : ARRAY_OF INTEGER[4];
-    Overlap : ARRAY_OF INTEGER[];
     sum , i ,j ,k : INTEGER;
+    tempo : BOOLEAN ;
 
 BEGIN
     sum := 0;
     Set_1 := {12, 13, 6, 10};
     Set_2 := {13, 10, 16, 15};
+    tempo := False;
 
 FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
-    FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
-        IF (Set_1[i] == Set_2[j]) THEN
-            Overlap[k] := Set_1[i];
-
-        ELSE_IF ((Set_2[j] == Set_1[i]) ) THEN
-                Overlap[k] := Set_2[j];
+        FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
+            IF (Set_1[i] <> Set_2[j]) THEN
+            tempo := True;
+        END_FOR
+        IF (tempo === False) THEN
+            sum := sum + Set_1[i]
         END_IF
     END_FOR
-END_FOR
-
-FOR k FROM 0 TO  Overlap.length-1 STEP 1 DO
-    sum := sum + Overlap[k]
-END_FOR
+    FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
+        FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
+            IF (Set_2[j] <> Set_1[i]) THEN
+            tempo := True;
+        END_FOR
+        IF (tempo === False) THEN
+            sum := sum + Set_2[j]
+        END_IF
+    END_FOR
 
     Write('Set 1 :');
     FOR i FROM 0 TO Set_1.length-1 STEP 1 DO 

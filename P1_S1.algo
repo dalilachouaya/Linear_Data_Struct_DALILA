@@ -7,7 +7,6 @@ ALGORITHM algo1_first_solu
 VAR
     Set_1 : ARRAY_OF INTEGER[4]; // declaring the array and define its length.
     Set_2 : ARRAY_OF INTEGER[5];
-    Dist : ARRAY_OF INTEGER[];
     sum , i , j ,k : INTEGER;  
     tempo : BOOLEAN ;
 
@@ -16,18 +15,25 @@ BEGIN
     Set _2: {2, 4, 1, 9, 3}
     sum := 0;
     tempo := False;
-WHILE (tempo) DO
+
     FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
         FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
-        IF (Set_1[i] <> Set_2[j]) THEN
-            dist[k] := Set_1[i] ;
-        ELSE_IF (Set_2[j] <> Set_1[i]) THEN
-            dist[k] := Set_2[j]
-        tempo := True;   
+            IF (Set_1[i] === Set_2[j]) THEN
+            tempo := True;
+        END_FOR
+        IF (tempo === False) THEN
+            sum := sum + Set_1[i]
         END_IF
     END_FOR
+    FOR j FROM 0 TO Set_2.length-1 STEP 1  DO
+        FOR i FROM 0 TO Set_1.length-1 STEP 1  DO
+            IF (Set_2[j] === Set_1[i]) THEN
+            tempo := True;
+        END_FOR
+        IF (tempo === False) THEN
+            sum := sum + Set_2[j]
+        END_IF
     END_FOR
-END_WHILE
 
 FOR k FROM 0 TO Dist.length-1 STEP 1 DO
     sum := sum + Dist[k]
